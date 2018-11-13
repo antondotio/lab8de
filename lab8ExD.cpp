@@ -25,7 +25,7 @@ int main()
     cout << "the_list after some insertions. Expected to be: [ 99, 110, 120, 220, 330, 440, 550 ]"<< endl;
     the_list.print();
     
-#if 0       // change #if 0 to #if 1 to test copyiong list.
+#if 1       // change #if 0 to #if 1 to test copyiong list.
     cout << "testing for copying lists ..."<< endl;
     OLList other_list;
     other_list = the_list;

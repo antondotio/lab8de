@@ -92,28 +92,23 @@ void OLList::remove(const ListItem& itemA)
 void OLList::destroy()
 {
     
-    // this function is not properly designed. As part of the exercise D
-    // For exercise B: students are supposed to remove the folloiwng lines and
-    // complete the definition of this helper function.
-    cout << "OLList::destroy was called but isn't ready for use"
-    << "--program is terminated.\n";
-    headM = 0;
 }
 
 void OLList::copy(const OLList& source)
 {
-    // this function is not properly designed. As part of the exercise D
-    // For exercise B: students are supposed to remove the folloiwng lines and
-    // complete the definition of this helper function.
-    
-    // The only effect of the next line is to tell the compiler
-    // not to generate an "unused argument" warning.  Don't leave it
-    // it in your solution.
-    (void) source;
-    
-    cout << "OLList::copy was called but isn't ready for use"
-    << "--program is terminated.\n";
-    exit(1);
+    Node *copy = source.headM;
+    headM = new Node;
+    headM->item = copy->item;
+    Node *move = headM;
+    copy = copy->next;
+
+    while(copy != nullptr){
+    move->next = new Node;
+    move = move->next;
+    move->item = copy->item;
+    copy = copy->next;
+    }
+    move->next = 0;
 }
 
 
