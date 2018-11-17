@@ -36,7 +36,7 @@ int main()
     third_list.print();
 #endif
     
-#if 0     //  change #if 0 to #if 1 to test removing and chaining.
+#if 1    //  change #if 0 to #if 1 to test removing and chaining.
     cout << "testing for removing and chaining assignment operator..."<< endl;
     the_list.remove(550);
     the_list.remove(330);

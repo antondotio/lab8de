@@ -84,20 +84,25 @@ void OLList::remove(const ListItem& itemA)
             maybe_doomed = maybe_doomed->next;
         }
         // point three
+        maybe_doomed = maybe_doomed->next;
+        before->next = maybe_doomed;
     }
-    // the remaining part of this function is missing. As part of exercise D
-    // students are supposed to complete the rest of the definition of this function.
 }
 
 void OLList::destroy()
-{   
-    Node *after = headM->next;
-    while(after != nullptr){ 
-        headM->next = nullptr;
-        headM = after;
-        after = after->next;
+{ 
+    if(headM == 0){
+        return;
     }
-    headM = nullptr;
+    else{
+        Node *after = headM->next;
+        while(after != nullptr){ 
+            headM->next = nullptr;
+            headM = after;
+            after = after->next;
+        }
+        headM = nullptr;
+    }
 }
 
 void OLList::copy(const OLList& source)
@@ -116,5 +121,4 @@ void OLList::copy(const OLList& source)
     }
     move->next = 0;
 }
-
 
