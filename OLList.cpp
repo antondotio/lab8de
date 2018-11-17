@@ -90,8 +90,14 @@ void OLList::remove(const ListItem& itemA)
 }
 
 void OLList::destroy()
-{
-    
+{   
+    Node *after = headM->next;
+    while(after != nullptr){ 
+        headM->next = nullptr;
+        headM = after;
+        after = after->next;
+    }
+    headM = nullptr;
 }
 
 void OLList::copy(const OLList& source)
