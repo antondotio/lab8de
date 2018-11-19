@@ -4,7 +4,7 @@
 #define hydro_h
 
 void displayHeader();
-int readData(const char* filename);
+int readData(FlowList list);
 int menu();
 void display();
 void addData();

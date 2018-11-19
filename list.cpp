@@ -3,5 +3,6 @@
 #include <stdlib.h>
 using namespace std;
 #include "list.h"
+#include "hydro.h"
 
-FlowList::FLowList(): headM(0) {}
+FlowList::FlowList(): headM(0), read(0) { }

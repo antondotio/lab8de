@@ -15,9 +15,9 @@ struct Node{
 class FlowList{
 public:
     FlowList();
-    FlowList(const FlowList& source);
+    /*FlowList(const FlowList& source);
     FlowList& operator=(const FlowList& rhs);
-    ~FlowList();
+    ~FlowList();*/
 
     void insert(const ListItem& itemA);
     void remove(const ListItem& itemA);
