@@ -5,39 +5,44 @@
 using namespace std;
 #include "list.h"
 #include "hydro.h"
+#define FILENAME "flow.txt"
 
 int main(){
     FlowList list;
-    int numRecords;
+    int numrecords;
     displayHeader();
-    numRecords = readData(list);
+    numrecords = readData(list);
+    cout<< numrecords <<endl;
     int quit = 0;
 
     while(1){
         switch(menu()){
             case 1:
                 //display list, average, median
-                display();
+                display(list, numrecords);
                 pressEnter();
-                menu();
+                break;
                 
             case 2:
                 //add data
+                cout<< "2>>";
                 addData();
                 pressEnter();
-                menu();
+                break;
                 
             case 3:
                 //save data into file
+                cout<< "3>>";
                 saveData();
                 pressEnter();
-                menu();
+                break;
                 
             case 4:
                 //remove data
+                cout<< "4>>";
                 removeData();
                 pressEnter();
-                menu();
+                break;
                 
             case 5:
                 cout << "\nProgram Terminated.\n";
@@ -46,7 +51,7 @@ int main(){
             default:
                 cout << "\nInvalid input.\n";
                 pressEnter();
-                menu();
+                break;
                 
         }
         if(quit == 1)            
@@ -64,7 +69,27 @@ void displayHeader(){
     pressEnter();
 }
 
-int readData(FlowList list){ 
+int readData(FlowList &list){ 
+    int year;
+    int numrecords = 0;
+    double flow;
+    ifstream in_stream;
+    in_stream.open(FILENAME);
+    if(in_stream.fail()){
+        cerr << "\nError opening file." << endl;
+        exit(1);
+    }
+    while(!in_stream.eof()){
+        in_stream >> year;
+        in_stream >> flow;
+        numrecords++;
+        ListItem *data =  new ListItem {year, flow};
+        list.insert(*data);
+    }
+
+    in_stream.close();
+
+    return numrecords;
     
 }
 
@@ -81,8 +106,12 @@ int menu(){
     return choice;
 }
 
-void display(){
-
+void display(FlowList &list, int numrecords){
+    list.print();
+    double avg = average(list);
+    cout << "The annual average of the flow is: " << avg << " billions cubic meter" << endl;
+    double med = median(list, numrecords);
+    cout << "The median flow is: " << med << " billions cubic meter" << endl;
 }
 
 void addData(){
@@ -93,11 +122,12 @@ void removeData(){
 
 }
 
-double average(){
+double average(FlowList &list){
+
 
 }
 
-double median(){
+double median(FlowList &list, int numrecords){
 
 }
 
@@ -107,11 +137,11 @@ void saveData(){
 
 void pressEnter(){
     cout<<"\n<<<Press Enter to Continue>>>\n";
-   
-    if(cin.get() == '\n'){
-        return;
-    }else{
+    cin.clear();
+    if(cin.get() != '\n'){
         cout << "\nProgram Terminated.\n";
         exit(1);
-    }    
+    }else{
+        return;
+    }
 }

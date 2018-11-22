@@ -1,4 +1,5 @@
 //list.h
+
 #ifndef list_h
 #define list_h
 
@@ -19,6 +20,8 @@ public:
     FlowList& operator=(const FlowList& rhs);
     ~FlowList();*/
 
+    int get_year() const;
+    double get_flow() const;
     void insert(const ListItem& itemA);
     void remove(const ListItem& itemA);
     void print() const;
@@ -27,8 +30,7 @@ private:
     Node* headM;
     Node* read;
 
-    void destroy();
-    void copy(const FlowList& source);
+    double sum;
 
 };
 
