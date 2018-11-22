@@ -6,7 +6,6 @@ using namespace std;
 #include "list.h"
 #include "hydro.h"
 #define FILENAME "flow.txt"
-#define OUTFILE "outflow.txt"
 
 int main(){
     FlowList list;
@@ -175,7 +174,7 @@ double median(FlowList &list, int numrecords){
 void saveData(FlowList &list){
     ofstream out_stream;
     Node * read = list.get_headM();
-    out_stream.open(OUTFILE);
+    out_stream.open(FILENAME);
     if(out_stream.fail()){
         cerr << "\nError opening file." << endl;
         exit(1);
@@ -185,6 +184,7 @@ void saveData(FlowList &list){
         read = read->next;
     }
     cout << "\nData saved into file successfully." << endl;
+    out_stream.close();
 }
 
 void pressEnter(){
