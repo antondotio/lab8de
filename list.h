@@ -16,21 +16,14 @@ struct Node{
 class FlowList{
 public:
     FlowList();
-    /*FlowList(const FlowList& source);
-    FlowList& operator=(const FlowList& rhs);
-    ~FlowList();*/
 
-    int get_year() const;
-    double get_flow() const;
-    void insert(const ListItem& itemA);
-    void remove(const ListItem& itemA);
+    Node* get_headM() const;
+    void insert(const ListItem& data);
+    void remove(const int year);
     void print() const;
 
 private:
     Node* headM;
-    Node* read;
-
-    double sum;
 
 };
 

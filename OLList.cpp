@@ -52,21 +52,19 @@ void OLList::insert(const ListItem& itemA)
         // point one
     }
     else {
-        Node *before = headM;      // will point to node in front of new node
-        Node *after = headM->next; // will be 0 or point to node after new node
+        Node *before = headM;      
+        Node *after = headM->next; 
         while(after != 0 && itemA > after->item) {
             before = after;
             after = after->next;
         }
         new_node->next = after;
         before->next = new_node;
-        // point two
     }
 }
 
 void OLList::remove(const ListItem& itemA)
 {
-    // if list is empty, do nothing
     if (headM == 0 || itemA < headM->item)
         return;
     
@@ -84,10 +82,7 @@ void OLList::remove(const ListItem& itemA)
             before = maybe_doomed;
             maybe_doomed = maybe_doomed->next;
         }
-        // point three
         doomed_node = maybe_doomed;
-
-
         before->next = maybe_doomed->next;
         delete doomed_node;
     }
@@ -111,7 +106,7 @@ void OLList::destroy()
 
 void OLList::copy(const OLList& source)
 {
-    Node *copy = source.headM
+    Node *copy = source.headM;
     headM = new Node;
     headM->item = copy->item;
     Node *move = headM;

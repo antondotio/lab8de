@@ -5,16 +5,11 @@ using namespace std;
 #include "list.h"
 #include "hydro.h"
 
-FlowList::FlowList(): headM(0), read(0), sum (0) { }
+FlowList::FlowList(): headM(0) { }
 
-int FlowList::get_year() const
+Node* FlowList::get_headM() const
 {
-    return headM->item.year;
-}
-
-double FlowList::get_flow() const
-{
-    return headM->item.flow;
+    return headM;
 }
 
 void FlowList::insert(const ListItem& data){
@@ -35,6 +30,28 @@ void FlowList::insert(const ListItem& data){
         new_node->next = after;
         before->next = new_node;
     }
+}
+
+void FlowList::remove(const int removeyear){
+    if(headM == 0) return;
+    Node* doomed_node = 0;
+
+    if(removeyear == headM->item.year){
+        doomed_node = headM;
+        delete doomed_node;
+        headM = headM->next;
+    }else{
+        Node *before = headM;
+        Node *maybe_doomed = headM->next;
+        while(maybe_doomed != 0 && maybe_doomed->item.year != removeyear){
+            before = maybe_doomed;
+            maybe_doomed = maybe_doomed->next;
+        }
+        doomed_node = maybe_doomed;
+        before->next = maybe_doomed->next;
+        delete doomed_node;
+    }
+
 }
 
 void FlowList::print() const
