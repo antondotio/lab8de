@@ -74,6 +74,7 @@ void OLList::remove(const ListItem& itemA)
     
     if (itemA == headM->item) {
         doomed_node = headM;
+        delete doomed_node;
         headM = headM->next;
     }
     else {
@@ -84,8 +85,11 @@ void OLList::remove(const ListItem& itemA)
             maybe_doomed = maybe_doomed->next;
         }
         // point three
-        maybe_doomed = maybe_doomed->next;
-        before->next = maybe_doomed;
+        doomed_node = maybe_doomed;
+
+
+        before->next = maybe_doomed->next;
+        delete doomed_node;
     }
 }
 
@@ -107,7 +111,7 @@ void OLList::destroy()
 
 void OLList::copy(const OLList& source)
 {
-    Node *copy = source.headM;
+    Node *copy = source.headM
     headM = new Node;
     headM->item = copy->item;
     Node *move = headM;
